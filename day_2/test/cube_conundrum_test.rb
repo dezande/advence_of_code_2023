@@ -11,5 +11,6 @@ class CubeConundrumTest < Minitest::Test
     bag = { red: 12, green: 13, blue: 14 }
     cube_conundrum = CubeConundrum.new(lines, bag)
     assert_equal 8, cube_conundrum.id_sum
+    assert_equal 2286, cube_conundrum.power_sum
   end
 end

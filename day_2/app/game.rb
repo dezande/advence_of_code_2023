@@ -16,6 +16,28 @@ class Game
     sets.all? { |set| GameSet.set_valid?(set, bag) }
   end
 
+  def blue_max
+    sets
+      .map { |set| GameSet.blue(set, bag) }
+      .max
+  end
+
+  def red_max
+    sets
+      .map { |set| GameSet.red(set, bag) }
+      .max
+  end
+
+  def green_max
+    sets
+      .map { |set| GameSet.green(set, bag) }
+      .max
+  end
+
+  def power
+    blue_max * red_max * green_max
+  end
+
   private
 
   def sets

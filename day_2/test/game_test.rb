@@ -8,6 +8,10 @@ class GameTest < Minitest::Test
     game = Game.new(line, bag)
     assert_equal 66, game.id
     refute game.valid?
+    assert_equal 17, game.blue_max
+    assert_equal 3, game.red_max
+    assert_equal 19, game.green_max
+    assert_equal 969, game.power
   end
 
   def test_game_67
@@ -16,5 +20,9 @@ class GameTest < Minitest::Test
     game = Game.new(line, bag)
     assert_equal 67, game.id
     assert game.valid?
+    assert_equal 17, game.blue_max
+    assert_equal 3, game.red_max
+    assert_equal 15, game.green_max
+    assert_equal 765, game.power
   end
 end

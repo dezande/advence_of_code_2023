@@ -3,6 +3,18 @@ class GameSet
     def set_valid?(...)
       new(...).set_valid?
     end
+
+    def blue(...)
+      new(...).blue
+    end
+
+    def red(...)
+      new(...).red
+    end
+
+    def green(...)
+      new(...).green
+    end
   end
 
   attr_reader :line, :bag

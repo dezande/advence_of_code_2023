@@ -15,4 +15,12 @@ class CubeConundrum
       .select(&:valid?)
       .sum(&:id)
   end
+
+  def power_sum
+    data
+      .lines
+      .map { |line| Game.new(line, bag) }
+      .sum(&:power)
+  end
+
 end
