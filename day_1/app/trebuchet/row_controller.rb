@@ -35,9 +35,9 @@ module Trebuchet
     end
 
     def number_and_letter
-      return 0 if scan_number_and_letter.count.zero?
+      return 0 if none_number_and_letter?
 
-      scan_number_and_letter.first * 10 + scan_number_and_letter.last
+      first_number_or_letter * 10 + last_number_or_letter
     end
 
     private
@@ -46,12 +46,37 @@ module Trebuchet
       line.scan(/\d/).map(&:to_i)
     end
 
-    def scan_number_and_letter
+    def none_number_and_letter?
       line
+        .scan(regex_number_and_letter)
+        .none?
+    end
+
+    def first_number_or_letter
+      i = 1
+      while line[0..i].scan(regex_number_and_letter).flatten.count.zero?
+        i += 1
+      end
+
+      string_to_number(line[0..i])
+    end
+
+    def last_number_or_letter
+      i = -2
+      while line[i..-1].scan(regex_number_and_letter).flatten.count.zero?
+        i -= 1
+      end
+
+      string_to_number(line[i..-1])
+    end
+
+    def string_to_number(world)
+      world
         .scan(regex_number_and_letter)
         .flatten
         .map { |number| DICTIONNARY.fetch(number, number) }
-        .map(&:to_i)
+        .first
+        .to_i
     end
 
     def regex_number_and_letter

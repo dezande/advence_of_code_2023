@@ -42,5 +42,10 @@ module Trebuchet
       input = 'pqrstsirxteen'
       assert_equal 0, Trebuchet::RowController.new(input).number_and_letter
     end
+
+    def test_string_edge_case
+      input = 'six8d145twoqcgkllqmkxmqphoneightt'
+      assert_equal 68, Trebuchet::RowController.new(input).number_and_letter
+    end
   end
 end
