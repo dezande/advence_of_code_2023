@@ -16,6 +16,6 @@ class TrebuchetController
   def sum_with_letter_and_number
     data
       .lines
-      .map { |line| Trebuchet::RowController.number_and_letter(line) }
+      .sum { |line| Trebuchet::RowController.number_and_letter(line) }
   end
 end
