@@ -8,8 +8,25 @@ class Scratchcards
   end
 
   def score_sum
-    data
-      .lines
-      .sum { |line| Card.score(line) }
+    cards.sum { |card| card.score }
+  end
+
+  def nb_copy
+    cards_copy = Array.new(cards.size, 1)
+
+    cards
+      .each do |card|
+        next if card.nb_common_numbers.zero?
+
+        card
+          .nb_common_numbers
+          .times { |i| cards_copy[card.id + i] += cards_copy[card.id - 1] }
+      end
+
+    cards_copy.sum
+  end
+
+  def cards
+    @cards = data.lines.map { |line| Card.new(line) }
   end
 end

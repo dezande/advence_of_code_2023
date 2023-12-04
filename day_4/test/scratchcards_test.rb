@@ -11,5 +11,6 @@ class ScratchcardsTest < Minitest::Test
     lines += 'Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11'
     scratchcards = Scratchcards.new(lines)
     assert_equal 13, scratchcards.score_sum
+    assert_equal 30, scratchcards.nb_copy
   end
 end

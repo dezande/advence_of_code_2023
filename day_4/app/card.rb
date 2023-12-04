@@ -6,9 +6,11 @@ class Card
   end
 
   attr_reader :card_string
+  attr_accessor :copy
 
   def initialize(card_string)
     @card_string = card_string
+    @copy = 1
   end
 
   def id
@@ -37,11 +39,14 @@ class Card
     selected_numbers & winning_numbers
   end
 
-  def score
-    common_numbers_size = common_numbers.size
-    return 0 if common_numbers_size.zero?
+  def nb_common_numbers
+    common_numbers.size
+  end
 
-    2**(common_numbers_size - 1)
+  def score
+    return 0 if nb_common_numbers.zero?
+
+    2**(nb_common_numbers - 1)
   end
 
   private
