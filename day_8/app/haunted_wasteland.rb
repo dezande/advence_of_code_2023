@@ -25,21 +25,20 @@ class HauntedWasteland
 
   def count_step_second
 		current_steps = nodes_id_finish_by('A')
-    count = 0
 
-    while current_steps.any? { |node|  node[-1] != 'Z' }
-      current_steps = current_steps
-        .map do |current_step|
-          if navigators[count % navigators.count] == 'L'
-            nodes[current_step].left
-          else
-            nodes[current_step].right
-          end
+    current_steps.map do |current_step|
+      count = 0
+      until current_step[-1] == 'Z'
+        current_step = if navigators[count % navigators.count] == 'L'
+          nodes[current_step].left
+        else
+          nodes[current_step].right
         end
-      count += 1
+        count += 1
+      end
+      count
     end
-
-    count
+    .reduce(:lcm)
   end
 
   private
