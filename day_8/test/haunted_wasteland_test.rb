@@ -35,4 +35,24 @@ class HauntedWastelandTest < Minitest::Test
     haunted_wasteland = HauntedWasteland.new(input_second)
     assert_equal haunted_wasteland.count_step, 6
   end
+
+  def input_third
+    <<-END
+        LR
+
+        11A = (11B, XXX)
+        11B = (XXX, 11Z)
+        11Z = (11B, XXX)
+        22A = (22B, XXX)
+        22B = (22C, 22C)
+        22C = (22Z, 22Z)
+        22Z = (22B, 22B)
+        XXX = (XXX, XXX)
+    END
+  end
+
+  def test_step_input_third
+    haunted_wasteland = HauntedWasteland.new(input_third)
+    assert_equal haunted_wasteland.count_step_second, 6
+  end
 end
