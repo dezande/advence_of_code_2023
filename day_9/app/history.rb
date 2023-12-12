@@ -20,6 +20,21 @@ class History
       end
   end
 
+  def left_value
+    response = []
+    response << first_history
+
+    until response.last.all? { |i| i.zero? }
+      response << create_new_line(response.last)
+    end
+
+    response
+      .reverse
+      .inject(0) do |memo, line|
+        memo = line.first - memo
+      end
+  end
+
   private
   
   def create_new_line(line)

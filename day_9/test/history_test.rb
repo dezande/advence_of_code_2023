@@ -16,4 +16,9 @@ class HistoryTest < Minitest::Test
     history = History.new('10 13 16 21 30 45')
     assert_equal 68, history.value
   end
+
+  def test_history_left
+    history = History.new('10 13 16 21 30 45')
+    assert_equal 5, history.left_value
+  end
 end

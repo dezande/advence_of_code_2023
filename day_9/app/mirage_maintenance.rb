@@ -13,4 +13,11 @@ class MirageMaintenance
       .map { |line| History.new(line) }
       .sum(&:value)
   end
+
+  def history_left_sum
+    input
+      .lines
+      .map { |line| History.new(line) }
+      .sum(&:left_value)
+  end
 end
